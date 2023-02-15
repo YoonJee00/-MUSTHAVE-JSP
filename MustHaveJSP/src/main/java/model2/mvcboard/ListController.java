@@ -7,7 +7,6 @@ import java.util.Map;
 
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -17,7 +16,6 @@ import utils.BoardPage;
 /**
  * Servlet implementation class ListController
  */
-@WebServlet("/ListController")
 public class ListController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 

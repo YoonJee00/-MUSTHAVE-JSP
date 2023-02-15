@@ -17,7 +17,8 @@ public class MVCBoardDAO extends DBConnPool {
 		String query = "SELECT COUNT(*) FROM MVCBOARD";
 
 		if (map.get("searchWord") != null) {
-			query += " WHERE " + map.get("searchField") + " " + " LIKE '%" + map.get("searchWord") + "%' ";
+			query += " WHERE " + map.get("searchField") + " " 
+		+ " LIKE '%" + map.get("searchWord") + "%' ";
 		}
 
 		try {
@@ -36,13 +37,15 @@ public class MVCBoardDAO extends DBConnPool {
 	public List<MVCBoardDTO> selectListPage(Map<String, Object> map) {
 		List<MVCBoardDTO> board = new Vector<MVCBoardDTO>();
 
-		String query = " " + " SELECT TB.*, ROWNUM rNUM FROM ( " + " SELECT * FROM MVCBOARD ";
+		String query = " " + " SELECT * FROM ( "
+					+ " SELECT Tb.*, ROWNUM rNUM FROM ( "
+					+ "	SELECT * FROM MVCBOARD";
 
 		if (map.get("searchWord") != null) {
-			query += " WHERE " + map.get("searchField") + " LIKE '%" + map.get("searchField") + "%' ";
+			query += " WHERE " + map.get("searchField") + " LIKE '%" + map.get("searchWord") + "%' ";
 		}
 
-		query += " ORDER BY IDX DESC " + " ) TB " + " ) " + " WHERE rNUM BETWEEN ? AND ?";
+		query += " ORDER BY IDX DESC " + " ) Tb " + " ) " + " WHERE rNUM BETWEEN ? AND ?";
 
 		try {
 			psmt = con.prepareStatement(query);
